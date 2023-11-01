@@ -1,0 +1,30 @@
+{
+  "name": "movieology",
+  "version": "0.0.1",
+  "description": "P2P Video Service",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc",
+    "start": "node dist"
+  },
+  "keywords": [
+    "video",
+    "stream",
+    "fun"
+  ],
+  "author": "Rolan",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "webtorrent": "^2.1.27"
+  }
+}
