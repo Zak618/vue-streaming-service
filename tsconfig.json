@@ -9,6 +9,6 @@
         "sourceMap": true,
         "baseUrl": ".",
         "esModuleInterop": true,
-        "noImplicitAny": false
+        "noImplicitAny": false,
     }
 }
