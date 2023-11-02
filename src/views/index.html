@@ -4,22 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Video Player</title>
 </head>
 <body>
     <div id="app">
-        <video src="" controls autoplay></video>
-        <h2>{{ message }}</h2>
+        <video :src="videoUrl" controls autoplay></video>
+        <ul>
+          <li v-for="file in files" :key="file.magnet">{{ file.fileName }}
+            <button @click="play(file)">Play</button>
+          </li>
+        </ul>
     </div>
 </body>
 <script>
     const { createApp, ref } = Vue
   
     createApp({
-      setup() {
-        const message = ref('Hello vue!')
+      data() {
         return {
-          message
+          activeVideo: {},
+          files: [
+            {
+              magnet: '423473411b6c00d3d7208244514e65b7193a8a4c',
+              fileName: 'Gran.Turismo.2023.D.WEB-DLRip.x264.seleZen.mkv'
+            },
+            {
+              magnet: '',
+              fileName: ''
+            }
+          ],
+          message: 'Hello vue'
+        }
+      },
+      computed: {
+        videoUrl: ({ activeVideo }) => activeVideo.fileName ? `/stream/${activeVideo.magnet}/${activeVideo.fileName}` : ''
+      },
+      methods: {
+        async play(file) {
+          const response = await axios.get(`/stream/add/${file.magnet}`) 
+          this.activeVideo = file
         }
       }
     }).mount('#app')
